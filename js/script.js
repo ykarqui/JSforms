@@ -4,7 +4,7 @@ class Main extends Form {
 
     constructor() {
         super();
-        console.log('Script init');
+        console.info('Script init');
     }
     
     // En el paso 2 al seleccionar los hijos menores de 18 años debe mostrar
