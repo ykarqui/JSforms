@@ -1,5 +1,4 @@
 export default class Form_Events {
-
     constructor() {
         this.initPrevNextButtons();
     }
@@ -7,7 +6,7 @@ export default class Form_Events {
     initPrevNextButtons() {
         let $prevButton = $('.js-previous');
         let $nextButton = $('.js-next');
-        
+
         $prevButton.click(this.previousAction.bind(this));
         $nextButton.click(this.nextAction.bind(this));
     }
@@ -18,20 +17,23 @@ export default class Form_Events {
     }
 
     goToStep(step, direction = 'next') {
+        const FIRST_STEP_VALUE = 33;
+        const SECOND_STEP_VALUE = 66;
+        const THIRD_STEP_VALUE = 99;
         // 2) Simplifica esta función para que sean menos líneas.
         let currentStep = step.replace(/^step\-/, '');
         let goToStep = '.step-';
         if (currentStep === '2') {
             if ('prev' === direction) {
                 goToStep += '1';
-                this.progressBar(33);
+                this.progressBar(FIRST_STEP_VALUE);
             } else {
                 goToStep += '3';
-                this.progressBar(99);
+                this.progressBar(THIRD_STEP_VALUE);
             }
         } else {
             goToStep += '2';
-            this.progressBar(66);
+            this.progressBar(SECOND_STEP_VALUE);
         }
         return goToStep;
     }
@@ -55,6 +57,13 @@ export default class Form_Events {
 
         let $nextStep = $(this.goToStep($formStep[0].classList[1]));
         $nextStep.removeClass('d-none');
+    }
+
+    getCurrentStep(evt) {
+        let $current = $(evt.currentTarget);
+        let $formStep = $current.parents('.form-step');
+        
+        $formStep.addClass('d-none');
     }
 
     progressBar(percent) {
