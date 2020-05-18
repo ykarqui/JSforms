@@ -35,8 +35,11 @@ export default class Form {
             }
         }).then( resp => {
             console.info(resp.json().then( rp => console.log('Server response: \n',rp)));
+            // Success message
             $('.success-alert').html(`<div class="alert alert-success" role="alert"><h2>Data was sended OK!</h2></div>`);
         }).catch(function(error) {
+            // Error message
+            $('.success-alert').html(`<div class="alert alert-danger" role="alert"><h2>Data wasnt sended :(</h2></div>`);
             console.error('There was an error executing the request:' + error.message);
           });
         
